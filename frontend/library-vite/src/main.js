@@ -1,8 +1,13 @@
 import './style.css'
-import { navigate } from './router.js'
+import { Nav } from './components/navbar.js';
+import { createRouter } from './router.js'
 
-const getPage = () => location.hash.slice(1) || 'authors'
+const app = document.querySelector("#app");
+app.innerHTML = ` 
+<header id="site-header"></header>
+  <main id="outlet"></main>
+  `;
 
-navigate(getPage())
+  document.querySelector("#site-header").innerHTML = Nav();
 
-window.addEventListener('hashchange', () => navigate(getPage()))
+  createRouter("#outlet");
