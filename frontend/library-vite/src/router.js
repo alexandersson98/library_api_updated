@@ -1,4 +1,7 @@
-import { HandleBook, mountHandleBook } from "./page/handleBook";
+import { HandleBook, mountHandleBook } from "./page/HandleBook";
+import { HandleAuthor, mountHandleAuthor } from "./page/HandleAuthor";
+import { HandleLoan, mountHandleLoan } from "./page/HandleLoan";
+import { Nav } from "./components/navbar";
 
 
 export function createRouter(outletSelector) {
@@ -12,16 +15,20 @@ export function createRouter(outletSelector) {
     "/": {
       view: HandleBook,
       mount: mountHandleBook,
-      showNav: false,
+      showNav: true,
     },
-    "/": {
+
+    "/authors": {
       view: HandleAuthor,
       mount: mountHandleAuthor,
-      showNav: false,
+      showNav: true,
     },
 
-
-
+    "/loans": {
+      view: HandleLoan,
+      mount: mountHandleLoan,
+      showNav: true,
+    },
 
     notFound: {
       view: () => `<h1>404</h1><p>Sidan finns inte.</p>`,
