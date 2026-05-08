@@ -7,6 +7,7 @@ import java.time.LocalDate;
     public class LoanHistory {
 
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
         @ManyToOne

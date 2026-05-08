@@ -1,8 +1,8 @@
 package com.example.boilerroom_labb1.entity;
 
 
+import com.example.boilerroom_labb1.entity.member.Member;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 
@@ -15,6 +15,10 @@ public class Loan {
     @OneToOne
     @JoinColumn(name = "book_id", unique = true, nullable = false)
     private Book book;
+    @ManyToOne
+    @JoinColumn(name = "memberId")
+    private Member member;
+
 
     private LocalDate loanDate;
 
