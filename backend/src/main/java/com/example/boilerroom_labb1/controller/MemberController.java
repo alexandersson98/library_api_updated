@@ -23,7 +23,8 @@ public class MemberController {
     @PostMapping
     public ResponseEntity<MemberResponseDto>createMember(@RequestBody MemberRequestDto memberRequestDto){
         MemberResponseDto response =  memberService.createMember(memberRequestDto);
-        return ResponseEntity.status(HttpStatus.CREATED)
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
                 .body(response);
 
 
