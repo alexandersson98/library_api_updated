@@ -44,6 +44,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/api/v1/loans/{id}").hasAnyRole("ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.GET, "/api/v1/loans/history").hasAnyRole("ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.POST, "/api/v1/member/admin").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/member/librarian").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .exceptionHandling(ex -> ex

@@ -27,6 +27,22 @@ public class MemberController {
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
+    @PostMapping("/admin")
+    public ResponseEntity<MemberResponseDto>createAdmin(@RequestBody MemberRequestDto memberRequestDto){
+        MemberResponseDto response =  memberService.createAdmin(memberRequestDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(response);
+    }
+
+    @PostMapping("/librarian")
+    public ResponseEntity<MemberResponseDto>createLibrarian(@RequestBody MemberRequestDto memberRequestDto){
+        MemberResponseDto response =  memberService.createLibrarian(memberRequestDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(response);
+    }
+
 
 
 

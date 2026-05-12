@@ -17,18 +17,18 @@ public class MemberMapper {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public MemberResponseDto toResponse(Member member){
+    public MemberResponseDto toResponse(Member member) {
         return new MemberResponseDto(member.getName(), member.getPhone(), member.getPersonId(), member.getEmail());
     }
 
-    public Member toMemberEntity(MemberRequestDto request){
+    public Member toMemberEntity(MemberRequestDto request, Role role) {
         Member member = new Member();
         member.setName(request.name());
         member.setPhone(request.phone());
         member.setPersonId(request.personId());
         member.setEmail(request.email());
         member.setPassword(passwordEncoder.encode(request.password()));
-        member.setRole(Role.USER);
+        member.setRole(role);
         return member;
     }
 }
