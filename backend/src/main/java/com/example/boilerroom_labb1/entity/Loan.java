@@ -45,4 +45,12 @@ public class Loan {
     public void setLoanDate(LocalDate loanDate) {
         this.loanDate = loanDate;
     }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public Member getMember() {
+        return member;
+    }
 }
