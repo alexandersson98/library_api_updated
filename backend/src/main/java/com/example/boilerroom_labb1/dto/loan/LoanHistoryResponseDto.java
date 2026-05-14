@@ -1,5 +1,7 @@
 package com.example.boilerroom_labb1.dto.loan;
 
+import com.example.boilerroom_labb1.dto.member.MemberLoanResponseDTO;
+import com.example.boilerroom_labb1.entity.member.Member;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDate;
@@ -19,5 +21,7 @@ public record LoanHistoryResponseDto(
         LocalDate returnDate,
 
         @Schema(description = "Status message", example = "Book has been returned")
-        String message
+        String message,
+
+        MemberLoanResponseDTO member
 ) {}
