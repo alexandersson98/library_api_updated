@@ -1,13 +1,17 @@
 import './style.css'
-import { Nav } from './components/navbar.js';
+import { Nav } from './components/NavBar.js';
+import { isLoggedIn, getRole } from './service/storage/localStorage.js';
 import { createRouter } from './router.js'
 
 const app = document.querySelector("#app");
-app.innerHTML = ` 
+app.innerHTML = `
 <header id="site-header"></header>
   <main id="outlet"></main>
   `;
 
-  document.querySelector("#site-header").innerHTML = Nav();
+export function renderNav() {
+  document.querySelector("#site-header").innerHTML = Nav(isLoggedIn(), getRole());
+}
 
-  createRouter("#outlet");
+renderNav();
+createRouter("#outlet");

@@ -6,18 +6,6 @@ export function HandleAuthor() {
       <h1>Authors</h1>
 
       <div class="card">
-        <h2>Create Author — POST /api/v1/author</h2>
-        <form id="form-create-author">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="name" />
-          </div>
-          <button type="submit" class="btn btn-primary">Create</button>
-        </form>
-        <div id="result-create-author"></div>
-      </div>
-
-      <div class="card">
         <h2>Get Author by ID — GET /api/v1/author/{id}</h2>
         <form id="form-get-author">
           <div class="form-group">

@@ -1,3 +1,6 @@
+import { getToken } from "../storage/localStorage"
+
+
 export function showResult(id, ok, data) {
   const el = document.getElementById(id)
   if (!el) return
@@ -8,9 +11,13 @@ export function showResult(id, ok, data) {
 
 export async function api(method, url, body) {
   try {
+    const token = getToken()
+    const headers = {}
+    if (body) headers['Content-Type'] = 'application/json'
+    if (token) headers['Authorization'] = `Bearer ${token}`
     const res = await fetch(url, {
       method,
-      headers: body ? { 'Content-Type': 'application/json' } : {},
+      headers,
       body: body ? JSON.stringify(body) : undefined,
     })
     const data = await res.json().catch(() => ({}))
