@@ -1,5 +1,7 @@
 package com.example.boilerroom_labb1.dto.loan;
 
+import com.example.boilerroom_labb1.dto.member.MemberLoanResponseDTO;
+import com.example.boilerroom_labb1.entity.member.Member;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDate;
@@ -8,5 +10,6 @@ public record LoanResponseDto(@Schema(description = "Unique identifier of the bo
                               Long bookId,
                               @Schema(description = "Title of the book", example = "Hunger Games")
                               String bookTitle,
-                              LocalDate loanDate) {
+                              LocalDate loanDate,
+                              MemberLoanResponseDTO member) {
 }

@@ -1,6 +1,7 @@
 package com.example.boilerroom_labb1.mapper;
 
 
+import com.example.boilerroom_labb1.dto.member.MemberLoanResponseDTO;
 import com.example.boilerroom_labb1.dto.member.MemberRequestDto;
 import com.example.boilerroom_labb1.dto.member.MemberResponseDto;
 import com.example.boilerroom_labb1.entity.member.Member;
@@ -30,5 +31,10 @@ public class MemberMapper {
         member.setPassword(passwordEncoder.encode(request.password()));
         member.setRole(role);
         return member;
+    }
+
+    public MemberLoanResponseDTO toLoanResponse(Member member){
+        return  new MemberLoanResponseDTO(member.getName(), member.getId());
+
     }
 }

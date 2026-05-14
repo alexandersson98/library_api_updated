@@ -6,7 +6,6 @@ import com.example.boilerroom_labb1.entity.member.Member;
 import com.example.boilerroom_labb1.entity.member.Role;
 import com.example.boilerroom_labb1.mapper.MemberMapper;
 import com.example.boilerroom_labb1.repository.MemberRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,6 +29,7 @@ public class MemberService {
         memberRepository.save(member);
         return memberMapper.toResponse(member);
     }
+
     public MemberResponseDto createLibrarian(MemberRequestDto memberRequestDto){
         Member member = memberMapper.toMemberEntity(memberRequestDto, Role.LIBRARIAN);
         memberRepository.save(member);

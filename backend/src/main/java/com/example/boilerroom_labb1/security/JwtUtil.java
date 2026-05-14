@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    @Value("${jwt.secret}")
+    @Value("${JWT_SECRET}")
     private String secret;
 
     @Value("${jwt.expiration}")
@@ -25,10 +25,10 @@ public class JwtUtil {
 
 
 
-    public String generateToken(String username){
+    public String generateToken(String username) {
         return Jwts.builder()
                 .subject(username)
-                .issuedAt( new Date())
+                .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSigningKey())
                 .compact();

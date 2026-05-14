@@ -1,5 +1,6 @@
 package com.example.boilerroom_labb1.entity;
 
+import com.example.boilerroom_labb1.entity.member.Member;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -7,12 +8,15 @@ import java.time.LocalDate;
     public class LoanHistory {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
         @ManyToOne
         @JoinColumn(name = "book_id", nullable = false)
         private Book book;
+        @ManyToOne
+        @JoinColumn(name = "memberId")
+        private Member member;
+
 
         private LocalDate loanDate;
         private LocalDate returnDate;
@@ -50,6 +54,14 @@ import java.time.LocalDate;
 
         public void setReturnDate(LocalDate returnDate) {
             this.returnDate = returnDate;
+        }
+
+        public Member getMember() {
+            return member;
+        }
+
+        public void setMember(Member member) {
+            this.member = member;
         }
     }
 

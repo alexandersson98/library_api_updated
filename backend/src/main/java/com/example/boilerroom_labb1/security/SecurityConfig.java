@@ -14,6 +14,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.List;
+
 @Configuration
 public class SecurityConfig {
 
@@ -30,8 +32,17 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable())
+                .cors(cors -> cors.configurationSource(request -> {
+                    var config = new org.springframework.web.cors.CorsConfiguration();
+                    config.setAllowedOrigins(List.of("http://localhost:5173"));
+                    config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+                    config.setAllowedHeaders(List.of("*"));
+                    config.setAllowCredentials(true);
+                    return config;
+                }))
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/member").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/books").permitAll()
@@ -41,7 +52,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/api/v1/books/edit/{id}").hasAnyRole("ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.POST, "/api/v1/author").hasAnyRole("ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.GET, "/api/v1/loans").hasAnyRole("ADMIN", "LIBRARIAN")
-                        .requestMatchers(HttpMethod.PATCH, "/api/v1/loans/{id}").hasAnyRole("ADMIN", "LIBRARIAN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/v1/loans/{id}").hasAnyRole("ADMIN", "LIBRARIAN", "USER")
                         .requestMatchers(HttpMethod.GET, "/api/v1/loans/history").hasAnyRole("ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.POST, "/api/v1/member/admin").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/v1/member/librarian").hasRole("ADMIN")
