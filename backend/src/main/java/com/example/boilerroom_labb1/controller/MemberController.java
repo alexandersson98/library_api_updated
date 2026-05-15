@@ -3,8 +3,10 @@ package com.example.boilerroom_labb1.controller;
 
 import com.example.boilerroom_labb1.dto.member.MemberRequestDto;
 import com.example.boilerroom_labb1.dto.member.MemberResponseDto;
-import com.example.boilerroom_labb1.entity.member.Role;
+import com.example.boilerroom_labb1.openapi.BadRequestResponse;
 import com.example.boilerroom_labb1.service.MemberService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,11 @@ public class MemberController {
     }
 
 
+    @Operation(summary = "Create member",
+            description = "Register new member to database"
+    )
+    @ApiResponse(responseCode = "201", description = "Created")
+    @BadRequestResponse
     @PostMapping
     public ResponseEntity<MemberResponseDto>createMember(@RequestBody MemberRequestDto memberRequestDto){
         MemberResponseDto response =  memberService.createMember(memberRequestDto);
@@ -27,6 +34,11 @@ public class MemberController {
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
+    @Operation(summary = "Create admin",
+            description = "Register new admin to database"
+    )
+    @ApiResponse(responseCode = "201", description = "Created")
+    @BadRequestResponse
     @PostMapping("/admin")
     public ResponseEntity<MemberResponseDto>createAdmin(@RequestBody MemberRequestDto memberRequestDto){
         MemberResponseDto response =  memberService.createAdmin(memberRequestDto);
@@ -34,6 +46,11 @@ public class MemberController {
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
+    @Operation(summary = "Create librarian",
+            description = "Register new librarian to database"
+    )
+    @ApiResponse(responseCode = "201", description = "Created")
+    @BadRequestResponse
 
     @PostMapping("/librarian")
     public ResponseEntity<MemberResponseDto>createLibrarian(@RequestBody MemberRequestDto memberRequestDto){
@@ -42,8 +59,4 @@ public class MemberController {
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
-
-
-
-
 }

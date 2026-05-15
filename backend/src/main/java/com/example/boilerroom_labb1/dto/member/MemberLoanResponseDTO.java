@@ -1,4 +1,11 @@
 package com.example.boilerroom_labb1.dto.member;
 
-public record MemberLoanResponseDTO(String name, Long id) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record MemberLoanResponseDTO(
+        @Schema(description = "Full name of the member", example = "Lukas Alexandersson")
+        String name,
+
+        @Schema(description = "Unique identifier of the member", example = "1")
+        Long id) {
 }

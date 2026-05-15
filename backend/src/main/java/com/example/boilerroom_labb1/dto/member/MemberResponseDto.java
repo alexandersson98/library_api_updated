@@ -1,10 +1,18 @@
 package com.example.boilerroom_labb1.dto.member;
 
-import com.example.boilerroom_labb1.entity.Loan;
-import com.example.boilerroom_labb1.entity.member.Role;
 
-public record MemberResponseDto(String name,
-                                String phone,
-                                String personId,
-                                String email) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record MemberResponseDto(
+        @Schema(description = "Full name of the member", example = "Lukas Alexandersson")
+        String name,
+
+        @Schema(description = "Phone number", example = "0723334455")
+        String phone,
+
+        @Schema(description = "Personal ID number", example = "19980101-1234")
+        String personId,
+
+        @Schema(description = "Email address", example = "lukas@live.se")
+        String email) {
 }
