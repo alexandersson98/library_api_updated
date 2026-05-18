@@ -3,6 +3,8 @@ package com.example.boilerroom_labb1.dto.author;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.io.Serializable;
+
 @Schema(description = "Response object representing an author")
 public record AuthorResponseDto(
 
@@ -11,5 +13,4 @@ public record AuthorResponseDto(
 
         @Schema(description = "name of the author", example = "Jk Rowling")
         String name
-) {
-}
+) implements Serializable {}

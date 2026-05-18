@@ -3,6 +3,9 @@ package com.example.boilerroom_labb1.dto.book.v2;
 
 import com.example.boilerroom_labb1.dto.author.AuthorResponseDto;
 import io.swagger.v3.oas.annotations.media.Schema;
+
+import java.io.Serializable;
+
 @Schema(description = "Version 2 response object representing a book")
 public record BookResponseDtoV2(
 
@@ -23,4 +26,4 @@ public record BookResponseDtoV2(
 
         @Schema(description = "Availability status of the book", example = "true")
         boolean available
-) {}
+) implements Serializable {}

@@ -2,6 +2,8 @@ package com.example.boilerroom_labb1.dto.book.v1;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.io.Serializable;
+
 @Schema(description = "Response object representing a book")
 public record BookResponseDto(
 
@@ -23,4 +25,4 @@ public record BookResponseDto(
         @Schema(description = "Version number for optimistic locking", example = "2")
         Long version
 
-) {}
+) implements Serializable {}
